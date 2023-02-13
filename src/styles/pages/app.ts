@@ -5,7 +5,7 @@ export const Container = styled('div', {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  minHeight: '100vh',
+  minHeight: 'calc(100vh - 100px)',
 })
 
 export const Header = styled('header', {
@@ -13,4 +13,5 @@ export const Header = styled('header', {
   width: '100%',
   maxWidth: 1100,
   margin: '0 auto',
+  height: '100px',
 })

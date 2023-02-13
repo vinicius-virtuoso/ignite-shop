@@ -6,7 +6,14 @@ export const HomeContainer = styled('main', {
   width: '100%',
   maxWidth: 'calc(100vw - ((100vw - 1180px ) / 2))',
   marginLeft: 'auto',
-  minHeight: 656,
+  minHeight: 156,
+  marginTop: '1rem',
+  marginBottom: '1rem',
+
+  ' > div': {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+  },
 })
 
 export const Product = styled('div', {
