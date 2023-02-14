@@ -81,6 +81,7 @@ export const CartHeader = styled('div', {
 
 export const CartContent = styled('div', {
   padding: '0 3rem',
+  height: '100%',
 
   h2: {
     fontSize: '$xl',
@@ -165,7 +166,7 @@ export const CartFooter = styled('div', {
   },
 
   '> div:nth-of-type(2)': {
-    marginBottom: '1rem',
+    marginBottom: '3rem',
 
     '> span:nth-of-type(1)': {
       fontSize: '$md',
@@ -179,7 +180,7 @@ export const CartFooter = styled('div', {
 
   button: {
     width: '100%',
-    height: '48px',
+    height: '58px',
     background: '$green300',
     fontSize: '$md',
 

@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import {
   ImageContainer,
+  LinkBox,
   ProductContainer,
   ProductDetails,
 } from '@/styles/pages/product'
@@ -12,6 +13,8 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 import { useState } from 'react'
 import Head from 'next/head'
+import { useCart } from '@/context/CartContext'
+import Link from 'next/link'
 
 interface ProductProps {
   product: ProductType
@@ -27,7 +30,7 @@ interface ProductType {
 }
 
 export default function Product({ product }: ProductProps) {
-  const [isCreateCheckoutSession, setIsCreateCheckoutSession] = useState(false)
+  const { cart, addOnCart } = useCart()
   const { isFallback } = useRouter()
 
   if (isFallback) {
@@ -38,36 +41,20 @@ export default function Product({ product }: ProductProps) {
     )
   }
 
-  async function checkProductId() {
-    setIsCreateCheckoutSession(true)
-    try {
-      console.log(product.defaultPriceId)
-
-      const response = await axios.post(`/api/checkoutSession`, {
-        priceId: product.defaultPriceId,
-      })
-
-      console.log(product.defaultPriceId)
-      const { checkoutUrl } = response.data
-
-      window.location.href = checkoutUrl
-    } catch (err) {
-      alert('Falha ao fazer checkout')
-      setIsCreateCheckoutSession(false)
-    }
-  }
-
   return (
     <>
       <Head>
         <title>{`${product.name} | Ignite Shop`}</title>
       </Head>
 
+      <LinkBox>
+        <Link href="/">Voltar</Link>
+      </LinkBox>
       <ProductContainer>
         <ImageContainer>
           <Image
-            width={340}
-            height={380}
+            width={440}
+            height={480}
             src={product.imageUrl[0]}
             alt={product.name}
           />
@@ -78,9 +65,28 @@ export default function Product({ product }: ProductProps) {
 
           <p>{product.description}</p>
 
-          <button disabled={isCreateCheckoutSession} onClick={checkProductId}>
-            Colocar na sacola
-          </button>
+          {cart.find((cartProduct) => cartProduct.id === product.id) ? (
+            <button
+              disabled={
+                cart.find((cartProduct) => cartProduct.id === product.id)
+                  ? true
+                  : false
+              }
+            >
+              Ja está na sacola!
+            </button>
+          ) : (
+            <button
+              disabled={
+                cart.find((cartProduct) => cartProduct.id === product.id)
+                  ? true
+                  : false
+              }
+              onClick={() => addOnCart(product)}
+            >
+              Colocar na sacola
+            </button>
+          )}
         </ProductDetails>
       </ProductContainer>
     </>

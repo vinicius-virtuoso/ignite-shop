@@ -1,19 +1,21 @@
 import { stripe } from '@/lib/stripe'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
+interface BodyProps {
+  itemsList: { defaultPriceId: string; quantity: number }[]
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { priceId } = req.body
-
-  console.log(priceId)
+  const { itemsList }: BodyProps = req.body
 
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  if (!priceId) {
+  if (!itemsList || itemsList.length === 0) {
     return res.status(400).json({ error: 'Price not found' })
   }
 
@@ -22,10 +24,12 @@ export default async function handler(
 
   const checkoutSession = await stripe.checkout.sessions.create({
     mode: 'payment',
-    line_items: [
-      { price: priceId, quantity: 1 },
-      { price: 'price_1MandtFvVjaja4bNwGj3CwqS', quantity: 1 },
-    ],
+    line_items: itemsList.map((item) => {
+      return {
+        price: item.defaultPriceId,
+        quantity: 1,
+      }
+    }),
     success_url,
     cancel_url,
   })

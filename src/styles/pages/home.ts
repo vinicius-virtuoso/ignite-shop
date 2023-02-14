@@ -65,24 +65,30 @@ export const Product = styled('div', {
         color: '$green300',
       },
     },
-    button: {
-      padding: '.25rem .5rem',
-      border: 0,
-      borderRadius: 4,
-      backgroundColor: '$green300',
-      color: '$white',
-      transition: 'all .2s ease-in',
-
-      '&:hover': {
-        backgroundColor: '$green500',
-      },
-    },
   },
 
   '&:hover': {
     footer: {
       transform: 'translateY(0)',
       opacity: 1,
+    },
+  },
+})
+
+export const IconBag = styled('div', {
+  padding: '.25rem .5rem',
+  border: 0,
+  borderRadius: 4,
+  color: '$white',
+
+  variants: {
+    variant: {
+      inCart: {
+        backgroundColor: '$green300',
+      },
+      outCart: {
+        backgroundColor: '$gray800',
+      },
     },
   },
 })

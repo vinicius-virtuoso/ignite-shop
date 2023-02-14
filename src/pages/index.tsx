@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next'
 import Image from 'next/image'
-import { HomeContainer, Product } from '@/styles/pages/home'
+import { HomeContainer, IconBag, Product } from '@/styles/pages/home'
 
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
@@ -11,6 +11,7 @@ import Link from 'next/link'
 
 import Head from 'next/head'
 import { Handbag } from 'phosphor-react'
+import { useCart } from '@/context/CartContext'
 
 interface HomeProps {
   products: ProductType[]
@@ -24,6 +25,8 @@ interface ProductType {
 }
 
 export default function Home({ products }: HomeProps) {
+  const { cart } = useCart()
+
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 3,
@@ -53,9 +56,15 @@ export default function Home({ products }: HomeProps) {
                   <span>{product.price}</span>
                 </div>
 
-                <button>
+                <IconBag
+                  variant={
+                    cart.find((productCart) => productCart.id === product.id)
+                      ? 'inCart'
+                      : 'outCart'
+                  }
+                >
                   <Handbag size={32} weight="regular" />
-                </button>
+                </IconBag>
               </footer>
             </Product>
           </Link>

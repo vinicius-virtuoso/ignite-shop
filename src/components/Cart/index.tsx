@@ -1,6 +1,9 @@
 import { useCart } from '@/context/CartContext'
+import axios from 'axios'
 import Image from 'next/image'
 import { X } from 'phosphor-react'
+import { useState } from 'react'
+import { EmptyCart } from './EmptyCart'
 
 import {
   CartContainer,
@@ -11,16 +14,37 @@ import {
   Overlay,
 } from './styles'
 
-import camisa1 from '@/assets/1.png'
-
 export const Cart = () => {
-  const { isOpen, handleChangeVisibilityCart } = useCart()
+  const { isOpen, handleChangeVisibilityCart, cart, removeOnCart, totalPrice } =
+    useCart()
+
+  const [isCreateCheckoutSession, setIsCreateCheckoutSession] = useState(false)
+
+  async function checkProductId() {
+    setIsCreateCheckoutSession(true)
+
+    try {
+      const response = await axios.post(`/api/checkoutSession`, {
+        itemsList: cart,
+      })
+
+      const { checkoutUrl } = response.data
+
+      window.location.href = checkoutUrl
+    } catch (err) {
+      alert('Falha ao fazer checkout')
+      setIsCreateCheckoutSession(false)
+    }
+  }
 
   return (
     <Overlay variant={isOpen ? 'open' : 'closed'}>
       <CartContainer variant={isOpen ? 'open' : 'closed'}>
         <CartHeader>
-          <button onClick={handleChangeVisibilityCart}>
+          <button
+            onClick={handleChangeVisibilityCart}
+            aria-label="fechar carrinho"
+          >
             <X size={32} weight="regular" />
           </button>
         </CartHeader>
@@ -28,36 +52,55 @@ export const Cart = () => {
           <h2>Sacola de compras</h2>
 
           <div>
-            <CartItem>
-              <div>
-                <Image src={camisa1} alt="" width="80" height="90" />
-              </div>
-              <div>
-                <div>
-                  <p>Camiseta Explorer</p>
-                  <span>
-                    <strong>R$ 79,90</strong>
-                  </span>
-                </div>
+            {cart.length > 0 ? (
+              <>
+                {cart.map((product) => (
+                  <CartItem key={product.id}>
+                    <div>
+                      <Image
+                        src={product.imageUrl[0]}
+                        alt={product.name}
+                        width="80"
+                        height="90"
+                      />
+                    </div>
+                    <div>
+                      <div>
+                        <p>{product.name}</p>
+                        <span>
+                          <strong>{product.price}</strong>
+                        </span>
+                      </div>
 
-                <button>Remover</button>
-              </div>
-            </CartItem>
+                      <button onClick={() => removeOnCart(product.id)}>
+                        Remover
+                      </button>
+                    </div>
+                  </CartItem>
+                ))}
+              </>
+            ) : (
+              <EmptyCart />
+            )}
           </div>
         </CartContent>
 
-        <CartFooter>
-          <div>
-            <span>Quantidade</span>
-            <span>3 itens</span>
-          </div>
-          <div>
-            <span>Valor total</span>
-            <span>R$ 270,00</span>
-          </div>
+        {cart.length > 0 && (
+          <CartFooter>
+            <div>
+              <span>Quantidade</span>
+              <span>{cart.length} itens</span>
+            </div>
+            <div>
+              <span>Valor total</span>
+              <span>{totalPrice}</span>
+            </div>
 
-          <button>Finalizar compra</button>
-        </CartFooter>
+            <button disabled={isCreateCheckoutSession} onClick={checkProductId}>
+              Finalizar compra
+            </button>
+          </CartFooter>
+        )}
       </CartContainer>
     </Overlay>
   )

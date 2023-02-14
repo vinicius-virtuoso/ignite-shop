@@ -1,5 +1,26 @@
 import { styled } from '..'
 
+export const LinkBox = styled('div', {
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  maxWidth: 1180,
+
+  a: {
+    color: '$green300',
+    fontSize: '$md',
+    fontWeight: 'bold',
+    textDecoration: 'none',
+    transition: 'all .2s ease-in',
+    padding: '2rem 0',
+
+    '&:hover': {
+      color: '$gray300',
+    },
+  },
+})
+
 export const ProductContainer = styled('div', {
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
@@ -63,6 +84,7 @@ export const ProductDetails = styled('div', {
     '&:disabled': {
       opacity: 0.6,
       cursor: 'not-allowed',
+      backgroundColor: '$gray800',
     },
 
     '&:not(:disabled):hover': {
