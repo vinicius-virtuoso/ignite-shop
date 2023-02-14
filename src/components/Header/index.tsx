@@ -1,4 +1,3 @@
-import React from 'react'
 import { IconCart } from '../Cart/IconCart'
 import { Logo } from '../Logo'
 import { HeaderContainer, Container } from './styles'
