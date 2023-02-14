@@ -33,10 +33,12 @@ export const Product = styled('div', {
 
   footer: {
     position: 'absolute',
-    padding: '2rem',
+    padding: '1.5rem',
     bottom: '0.25rem',
     left: '0.25rem',
     right: '0.25rem',
+
+    borderRadius: 4,
 
     display: 'flex',
     alignItems: 'center',
@@ -48,14 +50,32 @@ export const Product = styled('div', {
     opacity: 0,
     transition: 'all .2s ease-in-out',
 
-    strong: {
-      fontSize: '$lg',
-      color: '$gray100',
+    ' > div': {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '.5rem',
+
+      strong: {
+        fontSize: '$md',
+        color: '$gray100',
+      },
+      span: {
+        fontSize: '$md',
+        fontWeight: 'bold',
+        color: '$green300',
+      },
     },
-    span: {
-      fontSize: '$xl',
-      fontWeight: 'bold',
-      color: '$green300',
+    button: {
+      padding: '.25rem .5rem',
+      border: 0,
+      borderRadius: 4,
+      backgroundColor: '$green300',
+      color: '$white',
+      transition: 'all .2s ease-in',
+
+      '&:hover': {
+        backgroundColor: '$green500',
+      },
     },
   },
 

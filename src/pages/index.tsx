@@ -10,6 +10,7 @@ import Stripe from 'stripe'
 import Link from 'next/link'
 
 import Head from 'next/head'
+import { Handbag } from 'phosphor-react'
 
 interface HomeProps {
   products: ProductType[]
@@ -47,8 +48,14 @@ export default function Home({ products }: HomeProps) {
                 alt={product.name}
               />
               <footer>
-                <strong>{product.name}</strong>
-                <span>{product.price}</span>
+                <div>
+                  <strong>{product.name}</strong>
+                  <span>{product.price}</span>
+                </div>
+
+                <button>
+                  <Handbag size={32} weight="regular" />
+                </button>
               </footer>
             </Product>
           </Link>

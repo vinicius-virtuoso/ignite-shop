@@ -11,6 +11,7 @@ export const GlobaStyles = globalCss({
     '-webkit-font-smoothing': 'antialiased',
     backgroundColor: '$gray900',
     color: '$gray100',
+    overflow: 'hidden',
   },
   'body, input,textarea,button': {
     fontFamily: '"Roboto", sans-serif',
