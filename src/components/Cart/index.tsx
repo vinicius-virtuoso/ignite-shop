@@ -3,6 +3,7 @@ import { api } from '@/services/api'
 import Image from 'next/image'
 import { X } from 'phosphor-react'
 import { useState } from 'react'
+import { Triangle } from 'react-loader-spinner'
 import { EmptyCart } from './EmptyCart'
 
 import {
@@ -97,7 +98,16 @@ export const Cart = () => {
             </div>
 
             <button disabled={isCreateCheckoutSession} onClick={checkProductId}>
-              Finalizar compra
+              {isCreateCheckoutSession ? (
+                <Triangle
+                  height="34"
+                  width="34"
+                  color="#4fa94d"
+                  ariaLabel="triangle-loading"
+                />
+              ) : (
+                'Finalizar compra'
+              )}
             </button>
           </CartFooter>
         )}

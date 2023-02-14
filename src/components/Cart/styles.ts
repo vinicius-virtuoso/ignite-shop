@@ -189,7 +189,17 @@ export const CartFooter = styled('div', {
     color: '$white',
     cursor: 'pointer',
 
-    '&:hover': {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+    '&:disabled': {
+      opacity: 0.6,
+      cursor: 'not-allowed',
+      backgroundColor: '$gray900',
+    },
+
+    '&:not(:disabled):hover': {
       background: '$green500',
     },
   },
