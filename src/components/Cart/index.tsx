@@ -1,5 +1,5 @@
 import { useCart } from '@/context/CartContext'
-import axios from 'axios'
+import { api } from '@/services/api'
 import Image from 'next/image'
 import { X } from 'phosphor-react'
 import { useState } from 'react'
@@ -24,7 +24,7 @@ export const Cart = () => {
     setIsCreateCheckoutSession(true)
 
     try {
-      const response = await axios.post(`/api/checkoutSession`, {
+      const response = await api.post(`/api/checkoutSession`, {
         itemsList: cart,
       })
 
