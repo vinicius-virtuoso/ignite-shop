@@ -24,7 +24,7 @@ export const SuccessContainer = styled('main', {
 
   '> div': {
     display: 'flex',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
   },
 
   p: {
