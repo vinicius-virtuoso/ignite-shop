@@ -12,6 +12,10 @@ export const GlobaStyles = globalCss({
     backgroundColor: '$gray900',
     color: '$gray100',
     overflow: 'hidden',
+
+    '@bp1': {
+      overflow: 'auto',
+    },
   },
   'body, input,textarea,button': {
     fontFamily: '"Roboto", sans-serif',

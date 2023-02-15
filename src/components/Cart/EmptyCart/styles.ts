@@ -16,10 +16,22 @@ export const EmptyContainer = styled('div', {
     fontSize: '$2xl',
     fontWeight: 'bold',
     margin: '1rem 0',
+
+    '@bp1': {
+      fontSize: '$xl',
+    },
   },
 
   span: {
     color: '$gray300',
     opacity: 0.8,
+
+    '@bp1': {
+      fontSize: '.875rem',
+    },
+  },
+
+  '@bp1': {
+    padding: '1rem',
   },
 })

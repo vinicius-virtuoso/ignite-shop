@@ -5,14 +5,21 @@ export const HomeContainer = styled('main', {
   //   gap: '3rem',
   width: '100%',
   maxWidth: 'calc(100vw - ((100vw - 1180px ) / 2))',
+  minHeight: 456,
   marginLeft: 'auto',
-  minHeight: 156,
   marginTop: '1rem',
   marginBottom: '1rem',
 
   ' > div': {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
+  },
+
+  '@bp1': {
+    padding: '0 1rem',
+    maxWidth: '100%',
+    minHeight: 256,
+    marginLeft: 0,
   },
 })
 
@@ -25,10 +32,16 @@ export const Product = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
 
+  '@bp1': {
+    maxHeight: 420,
+  },
+
   overflow: 'hidden',
 
   img: {
-    objectFit: 'cover',
+    objectFit: 'contain',
+    width: '80%',
+    height: '80%',
   },
 
   footer: {

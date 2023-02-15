@@ -1,13 +1,16 @@
 import { styled } from '@/styles'
 
 export const HeaderContainer = styled('header', {
-  padding: '3rem 0',
   width: '100%',
   margin: '0 auto',
-  height: '100px',
+  height: 100,
 
   display: 'flex',
   alignItems: 'center',
+
+  '@bp1': {
+    height: 85,
+  },
 })
 
 export const Container = styled('div', {
@@ -19,4 +22,8 @@ export const Container = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+
+  '@bp1': {
+    padding: '0 1rem',
+  },
 })

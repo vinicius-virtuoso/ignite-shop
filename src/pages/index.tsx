@@ -28,9 +28,20 @@ export default function Home({ products }: HomeProps) {
   const { cart } = useCart()
 
   const [sliderRef] = useKeenSlider({
+    mode: 'free-snap',
     slides: {
+      origin: 'auto',
       perView: 3,
       spacing: 48,
+    },
+    breakpoints: {
+      '(max-width: 640px)': {
+        slides: {
+          origin: 'center',
+          perView: 1.3,
+          spacing: 15,
+        },
+      },
     },
   })
 
@@ -45,8 +56,8 @@ export default function Home({ products }: HomeProps) {
           <Link href={`/product/${product.id}`} key={product.id}>
             <Product className="keen-slider__slide">
               <Image
-                width={520}
-                height={480}
+                width={200}
+                height={200}
                 src={product.imageUrl}
                 alt={product.name}
               />

@@ -7,15 +7,24 @@ export const SuccessContainer = styled('main', {
   justifyContent: 'center ',
 
   margin: '0 auto',
-  height: 656,
+
+  '@bp1': {
+    padding: '0 1.5rem',
+  },
 
   h1: {
-    fontWeight: '$2xl',
     color: '$gray100',
+
+    '@bp1': {
+      fontSize: '$xl',
+
+      marginBottom: '1rem',
+    },
   },
 
   '> div': {
     display: 'flex',
+    justifyContent: 'flex-start',
   },
 
   p: {
@@ -25,6 +34,11 @@ export const SuccessContainer = styled('main', {
     textAlign: 'center',
     marginTop: '2rem',
     lineHeight: 1.4,
+
+    '@bp1': {
+      fontSize: '$md',
+      marginTop: '1rem',
+    },
   },
 
   a: {
@@ -38,6 +52,11 @@ export const SuccessContainer = styled('main', {
 
     '&:hover': {
       color: '$green500',
+    },
+
+    '@bp1': {
+      fontSize: '$md',
+      marginTop: '3rem',
     },
   },
 })
@@ -59,6 +78,16 @@ export const ImageContainer = styled('div', {
   justifyContent: 'center',
 
   img: {
-    objectFit: 'cover',
+    objectFit: 'contain',
+  },
+
+  '@bp1': {
+    width: 110,
+    height: 110,
+    marginTop: '0.5rem',
+  },
+
+  '& + &': {
+    marginLeft: -50,
   },
 })

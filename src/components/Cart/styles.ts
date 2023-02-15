@@ -54,6 +54,10 @@ export const CartContainer = styled('div', {
       },
     },
   },
+
+  '@bp1': {
+    maxWidth: '85%',
+  },
 })
 
 export const CartHeader = styled('div', {
@@ -77,6 +81,10 @@ export const CartHeader = styled('div', {
 
     overflow: 'hidden',
   },
+
+  '@bp1': {
+    padding: '1.75rem 1.2rem 0.5rem 1.2rem',
+  },
 })
 
 export const CartContent = styled('div', {
@@ -87,6 +95,10 @@ export const CartContent = styled('div', {
     fontSize: '$xl',
     color: '$white',
     marginBottom: '1rem',
+
+    '@bp1': {
+      fontSize: '$md',
+    },
   },
 
   ' > div': {
@@ -94,12 +106,23 @@ export const CartContent = styled('div', {
     height: '100%',
     maxHeight: 525,
     overflow: 'auto',
+
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 5,
+
+    '@bp1': {
+      maxHeight: 390,
+    },
+  },
+  '@bp1': {
+    padding: '0 1.125rem',
   },
 })
 
 export const CartItem = styled('div', {
   width: '100%',
-  height: 120,
+  height: 100,
   padding: '1rem 0',
   display: 'flex',
   gap: '1rem',
@@ -113,6 +136,12 @@ export const CartItem = styled('div', {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+
+    '@bp1': {
+      width: 70,
+      height: 75,
+      borderRadius: 8,
+    },
 
     img: {
       objectFit: 'contain',
@@ -132,6 +161,10 @@ export const CartItem = styled('div', {
 
       p: {
         fontSize: '$md',
+
+        '@bp1': {
+          fontSize: '.75rem',
+        },
       },
       span: {
         fontSize: '$md',
@@ -145,10 +178,22 @@ export const CartItem = styled('div', {
       fontSize: '$md',
       cursor: 'pointer',
 
+      '@bp1': {
+        fontSize: '.875rem',
+      },
+
       '&:hover': {
         color: '$green300',
       },
     },
+
+    '@bp1': {
+      gap: '.5rem',
+    },
+  },
+
+  '@bp1': {
+    height: 80,
   },
 })
 
@@ -163,6 +208,12 @@ export const CartFooter = styled('div', {
     width: '100%',
     justifyContent: 'space-between',
     marginBottom: '.5rem',
+
+    span: {
+      '@bp1': {
+        fontSize: '.75em',
+      },
+    },
   },
 
   '> div:nth-of-type(2)': {
@@ -171,16 +222,28 @@ export const CartFooter = styled('div', {
     '> span:nth-of-type(1)': {
       fontSize: '$md',
       fontWeight: 'bold',
+
+      '@bp1': {
+        fontSize: '.875rem',
+      },
     },
     '> span:nth-of-type(2)': {
       fontSize: '$xl',
       fontWeight: 'bold',
+
+      '@bp1': {
+        fontSize: '$md',
+      },
+    },
+
+    '@bp1': {
+      marginBottom: '1rem',
     },
   },
 
   button: {
     width: '100%',
-    height: '58px',
+    height: 58,
     background: '$green300',
     fontSize: '$md',
 
@@ -202,5 +265,12 @@ export const CartFooter = styled('div', {
     '&:not(:disabled):hover': {
       background: '$green500',
     },
+    '@bp1': {
+      height: 48,
+    },
+  },
+
+  '@bp1': {
+    padding: '0 1.5rem 1.5rem 1.5rem',
   },
 })

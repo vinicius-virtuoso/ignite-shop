@@ -8,6 +8,10 @@ export const BagIcon = styled('button', {
 
   position: 'relative',
   color: '$white',
+
+  '@bp1': {
+    padding: '.075rem .25rem',
+  },
 })
 
 export const ItemsCount = styled('div', {

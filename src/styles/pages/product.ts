@@ -18,6 +18,14 @@ export const LinkBox = styled('div', {
     '&:hover': {
       color: '$gray300',
     },
+
+    '@bp1': {
+      fontSize: '1rem',
+      padding: '1rem 0',
+    },
+  },
+  '@bp1': {
+    padding: '0 1.5rem',
   },
 })
 
@@ -29,6 +37,12 @@ export const ProductContainer = styled('div', {
 
   maxWidth: 1180,
   margin: '0 auto',
+
+  '@bp1': {
+    gridTemplateColumns: '1fr',
+    justifyItems: 'center',
+    padding: '0 1.5rem',
+  },
 })
 
 export const ImageContainer = styled('div', {
@@ -44,7 +58,13 @@ export const ImageContainer = styled('div', {
   justifyContent: 'center',
 
   img: {
-    objectFit: 'cover',
+    objectFit: 'contain',
+    maxWidth: '100%',
+  },
+
+  '@bp1': {
+    maxWidth: 200,
+    height: 200,
   },
 })
 
@@ -55,18 +75,32 @@ export const ProductDetails = styled('div', {
   h1: {
     fontSize: '$2xl',
     color: '$gray300',
+
+    '@bp1': {
+      fontSize: '$xl',
+    },
   },
   span: {
     marginTop: '1rem',
     display: 'block',
     fontSize: '$2xl',
     color: '$green300',
+
+    '@bp1': {
+      fontSize: '$xl',
+      marginTop: '.5rem',
+    },
   },
   p: {
     marginTop: '2.5rem',
     fontSize: '$md',
     lineHeight: 1.6,
     color: '$gray300',
+
+    '@bp1': {
+      fontSize: '.875rem',
+      marginTop: '.5rem',
+    },
   },
 
   button: {
@@ -89,6 +123,11 @@ export const ProductDetails = styled('div', {
 
     '&:not(:disabled):hover': {
       backgroundColor: '$green300',
+    },
+
+    '@bp1': {
+      marginTop: '1.5rem',
+      padding: '.875rem',
     },
   },
 })
