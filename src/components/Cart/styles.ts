@@ -170,22 +170,6 @@ export const CartItem = styled('div', {
         fontSize: '$md',
       },
     },
-    button: {
-      backgroundColor: 'transparent',
-      border: 0,
-      color: '$green500',
-      fontWeight: 'normal',
-      fontSize: '$md',
-      cursor: 'pointer',
-
-      '@bp1': {
-        fontSize: '.875rem',
-      },
-
-      '&:hover': {
-        color: '$green300',
-      },
-    },
 
     '@bp1': {
       gap: '.5rem',
@@ -238,35 +222,6 @@ export const CartFooter = styled('div', {
 
     '@bp1': {
       marginBottom: '1rem',
-    },
-  },
-
-  button: {
-    width: '100%',
-    height: 58,
-    background: '$green300',
-    fontSize: '$md',
-
-    border: 0,
-    borderRadius: 8,
-    color: '$white',
-    cursor: 'pointer',
-
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-
-    '&:disabled': {
-      opacity: 0.6,
-      cursor: 'not-allowed',
-      backgroundColor: '$gray900',
-    },
-
-    '&:not(:disabled):hover': {
-      background: '$green500',
-    },
-    '@bp1': {
-      height: 48,
     },
   },
 

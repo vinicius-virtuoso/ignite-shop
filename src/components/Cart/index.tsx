@@ -14,6 +14,7 @@ import {
   CartItem,
   Overlay,
 } from './styles'
+import { RemoveButton } from './RemoveButton'
 
 export const Cart = () => {
   const { isOpen, handleChangeVisibilityCart, cart, removeOnCart, totalPrice } =
@@ -76,9 +77,9 @@ export const Cart = () => {
                           </span>
                         </div>
 
-                        <button onClick={() => removeOnCart(product.id)}>
+                        <RemoveButton onClick={() => removeOnCart(product.id)}>
                           Remover
-                        </button>
+                        </RemoveButton>
                       </div>
                     </CartItem>
                   ))}

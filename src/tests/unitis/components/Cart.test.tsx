@@ -1,18 +1,16 @@
 import '@testing-library/jest-dom'
 
 import { CartContext } from '@/context/CartContext'
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { Cart } from '@/components/Cart'
 
 import { faker } from '@faker-js/faker'
-
-import camisaImg from '@/assets/1.png'
 
 const product = {
   id: faker.datatype.uuid(),
   name: faker.commerce.productName(),
   price: faker.commerce.price(102, 102, 2, 'R$ '),
-  imageUrl: [camisaImg],
+  imageUrl: [faker.image.fashion()],
   defaultPriceId: '',
 }
 
@@ -89,8 +87,6 @@ describe('Tests in component Cart', () => {
   })
 
   test('Should render texts of cart empty when to cart is empty', async () => {
-    // let isOpen = true
-
     renderComponent(
       isOpen,
       handleChangeVisibilityCart,
