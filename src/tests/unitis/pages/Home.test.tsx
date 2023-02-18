@@ -17,13 +17,11 @@ const productsArr = [
 ]
 
 function renderComponent(products) {
-  const { debug } = render(
+  render(
     <CartProvider>
       <Home products={products} />
     </CartProvider>
   )
-
-  debug()
 }
 
 describe('Test in page Index|Home', () => {
