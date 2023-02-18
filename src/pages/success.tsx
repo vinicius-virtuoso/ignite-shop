@@ -29,7 +29,7 @@ export default function Success({ customerName, products }: SuccessProps) {
       <SuccessContainer>
         <h1>Compra efetuada!</h1>
 
-        {products.length ? (
+        {products.length && (
           <div>
             {products.map((item) => (
               <ImageContainer key={item.id}>
@@ -42,8 +42,6 @@ export default function Success({ customerName, products }: SuccessProps) {
               </ImageContainer>
             ))}
           </div>
-        ) : (
-          ''
         )}
 
         {products.length > 1 ? (

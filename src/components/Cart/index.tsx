@@ -1,10 +1,10 @@
-import { useCart } from '@/context/CartContext'
-import { api } from '@/services/api'
-import Image from 'next/image'
-import { X } from 'phosphor-react'
 import { useState } from 'react'
-import { Triangle } from 'react-loader-spinner'
+import { useCart } from '@/context/CartContext'
+import { CheckoutButton } from './CheckoutButton'
 import { EmptyCart } from './EmptyCart'
+import { X } from 'phosphor-react'
+import Image from 'next/image'
+import { api } from '@/services/api'
 
 import {
   CartContainer,
@@ -18,7 +18,6 @@ import {
 export const Cart = () => {
   const { isOpen, handleChangeVisibilityCart, cart, removeOnCart, totalPrice } =
     useCart()
-
   const [isCreateCheckoutSession, setIsCreateCheckoutSession] = useState(false)
 
   async function checkProductId() {
@@ -39,79 +38,75 @@ export const Cart = () => {
   }
 
   return (
-    <Overlay variant={isOpen ? 'open' : 'closed'}>
-      <CartContainer variant={isOpen ? 'open' : 'closed'}>
-        <CartHeader>
-          <button
-            onClick={handleChangeVisibilityCart}
-            aria-label="fechar carrinho"
-          >
-            <X size={32} weight="regular" />
-          </button>
-        </CartHeader>
-        <CartContent>
-          <h2>Sacola de compras</h2>
-
-          <div>
-            {cart.length > 0 ? (
-              <>
-                {cart.map((product) => (
-                  <CartItem key={product.id}>
-                    <div>
-                      <Image
-                        src={product.imageUrl[0]}
-                        alt={product.name}
-                        width="80"
-                        height="90"
-                      />
-                    </div>
-                    <div>
-                      <div>
-                        <p>{product.name}</p>
-                        <span>
-                          <strong>{product.price}</strong>
-                        </span>
-                      </div>
-
-                      <button onClick={() => removeOnCart(product.id)}>
-                        Remover
-                      </button>
-                    </div>
-                  </CartItem>
-                ))}
-              </>
-            ) : (
-              <EmptyCart />
-            )}
-          </div>
-        </CartContent>
-
-        {cart.length > 0 && (
-          <CartFooter>
-            <div>
-              <span>Quantidade</span>
-              <span>{cart.length} itens</span>
-            </div>
-            <div>
-              <span>Valor total</span>
-              <span>{totalPrice}</span>
-            </div>
-
-            <button disabled={isCreateCheckoutSession} onClick={checkProductId}>
-              {isCreateCheckoutSession ? (
-                <Triangle
-                  height="34"
-                  width="34"
-                  color="#4fa94d"
-                  ariaLabel="triangle-loading"
-                />
-              ) : (
-                'Finalizar compra'
-              )}
+    isOpen && (
+      <Overlay variant={isOpen ? 'open' : 'closed'} data-testid="cart">
+        <CartContainer variant={isOpen ? 'open' : 'closed'}>
+          <CartHeader>
+            <button
+              data-testid="close-cart"
+              onClick={handleChangeVisibilityCart}
+              aria-label="fechar carrinho"
+            >
+              <X size={32} weight="regular" />
             </button>
-          </CartFooter>
-        )}
-      </CartContainer>
-    </Overlay>
+          </CartHeader>
+          <CartContent>
+            <h2>Sacola de compras</h2>
+
+            <div>
+              {cart.length > 0 ? (
+                <>
+                  {cart.map((product) => (
+                    <CartItem key={product.id}>
+                      <div>
+                        <Image
+                          src={product.imageUrl[0]}
+                          alt={product.name}
+                          width="80"
+                          height="90"
+                        />
+                      </div>
+                      <div>
+                        <div>
+                          <p>{product.name}</p>
+                          <span>
+                            <strong data-testid="product-price">
+                              {product.price}
+                            </strong>
+                          </span>
+                        </div>
+
+                        <button onClick={() => removeOnCart(product.id)}>
+                          Remover
+                        </button>
+                      </div>
+                    </CartItem>
+                  ))}
+                </>
+              ) : (
+                <EmptyCart />
+              )}
+            </div>
+          </CartContent>
+
+          {cart.length > 0 && (
+            <CartFooter>
+              <div>
+                <span>Quantidade</span>
+                <span data-testid="quantity-cart">{cart.length} items</span>
+              </div>
+              <div>
+                <span>Valor total</span>
+                <span data-testid="total-price-cart">{totalPrice}</span>
+              </div>
+              <CheckoutButton
+                onClick={checkProductId}
+                isCreateCheckoutSession={isCreateCheckoutSession}
+              />
+            </CartFooter>
+          )}
+        </CartContainer>
+      </Overlay>
+    )
   )
 }

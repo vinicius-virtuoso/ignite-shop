@@ -3,7 +3,7 @@ import { EmptyContainer } from './styles'
 
 export const EmptyCart = () => {
   return (
-    <EmptyContainer>
+    <EmptyContainer data-testid="empty-cart">
       <p>Está vazio!</p>
       <span>Adicione produtos na sua sacola</span>
     </EmptyContainer>

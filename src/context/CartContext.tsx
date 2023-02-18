@@ -18,7 +18,7 @@ interface CartType {
   defaultPriceId: string
 }
 
-const CartContext = createContext({} as CartContextProps)
+export const CartContext = createContext({} as CartContextProps)
 
 export const CartProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -38,16 +38,14 @@ export const CartProvider = ({ children }) => {
     setCart((state) => state.filter((product) => product.id !== id))
   }
 
-  const priceTotal = cart.map(
-    (price) => Number(price.price.replace(/[^\d]/g, '')) / 100
-  )
-
-  const reducePrice = priceTotal.reduce((total, item) => item + total, 0)
-
   const totalPrice = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
-  }).format(reducePrice)
+  }).format(
+    cart
+      .map((price) => Number(price.price.replace(/[^\d]/g, '')) / 100)
+      .reduce((total, item) => item + total, 0)
+  )
 
   return (
     <CartContext.Provider

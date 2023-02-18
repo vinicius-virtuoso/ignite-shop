@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app'
 
 import { Container } from '@/styles/pages/app'
 import { Header } from '@/components/Header'
-import { CartProvider } from '@/context/CartContext'
+import { CartProvider, useCart } from '@/context/CartContext'
 import { Cart } from '@/components/Cart'
 
 GlobaStyles()

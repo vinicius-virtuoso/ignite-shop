@@ -11,7 +11,9 @@ export const IconCart = () => {
       aria-label="Abrir carrinho de compras"
     >
       <Handbag size={32} weight="light" />
-      {cart.length > 0 && <ItemsCount>{cart.length}</ItemsCount>}
+      {cart.length > 0 && (
+        <ItemsCount data-testid="count-cart">{cart.length}</ItemsCount>
+      )}
     </BagIcon>
   )
 }
