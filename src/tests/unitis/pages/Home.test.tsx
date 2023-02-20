@@ -35,8 +35,9 @@ describe('Test in page Index|Home', () => {
   test('Should navigate to product page when clicked', () => {
     renderComponent(productsArr)
 
-    const cardProduct = screen.getByTestId('product-link')
-    fireEvent.click(cardProduct)
+    const cardProduct = screen.getAllByRole('link')
+
+    fireEvent.click(cardProduct[0])
 
     expect(window.location.pathname).toBe('/')
   })
