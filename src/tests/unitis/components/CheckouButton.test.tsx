@@ -80,4 +80,19 @@ describe('Test in component CheckoutButton', () => {
 
     expect(screen.getByTestId('loading')).toBeInTheDocument()
   })
+
+  test('Should not appear if the cart is empty', () => {
+    loading = true
+    renderComponent(
+      isOpen,
+      handleChangeVisibilityCart,
+      addOnCart,
+      removeOnCart,
+      cart,
+      totalPrice,
+      loading
+    )
+
+    expect(screen.getByTestId('loading')).toBeInTheDocument()
+  })
 })

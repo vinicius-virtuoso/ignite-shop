@@ -14,7 +14,7 @@ interface SuccessProps {
 
 interface ProductType {
   name: string
-  images: string
+  images: string[]
   id: string
 }
 

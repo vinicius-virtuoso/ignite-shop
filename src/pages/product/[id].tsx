@@ -13,6 +13,7 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { useCart } from '@/context/CartContext'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 interface ProductProps {
   product: ProductType
@@ -21,7 +22,7 @@ interface ProductProps {
 interface ProductType {
   id: string
   name: string
-  imageUrl: string
+  imageUrl: string[]
   price: string
   description: string
   defaultPriceId: string
@@ -30,6 +31,10 @@ interface ProductType {
 export default function Product({ product }: ProductProps) {
   const { cart, addOnCart } = useCart()
   const { isFallback } = useRouter()
+
+  const isDisabled = cart.find((cartProduct) => cartProduct.id === product.id)
+    ? true
+    : false
 
   if (isFallback) {
     return (
@@ -63,28 +68,9 @@ export default function Product({ product }: ProductProps) {
 
           <p>{product.description}</p>
 
-          {cart.find((cartProduct) => cartProduct.id === product.id) ? (
-            <button
-              disabled={
-                cart.find((cartProduct) => cartProduct.id === product.id)
-                  ? true
-                  : false
-              }
-            >
-              Ja está na sacola!
-            </button>
-          ) : (
-            <button
-              disabled={
-                cart.find((cartProduct) => cartProduct.id === product.id)
-                  ? true
-                  : false
-              }
-              onClick={() => addOnCart(product)}
-            >
-              Colocar na sacola
-            </button>
-          )}
+          <button disabled={isDisabled} onClick={() => addOnCart(product)}>
+            {isDisabled ? 'Ja está na sacola!' : 'Colocar na sacola'}
+          </button>
         </ProductDetails>
       </ProductContainer>
     </>

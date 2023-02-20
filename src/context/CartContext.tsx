@@ -14,7 +14,7 @@ interface CartType {
   id: string
   name: string
   price: string
-  imageUrl: string
+  imageUrl: string[]
   defaultPriceId: string
 }
 

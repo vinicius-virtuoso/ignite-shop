@@ -18,7 +18,7 @@ let isOpen = true
 const handleChangeVisibilityCart = jest.fn()
 const addOnCart = jest.fn()
 const removeOnCart = jest.fn()
-let cart = []
+const cart = []
 const totalPrice = product.price
 
 function renderComponent(
@@ -47,19 +47,13 @@ function renderComponent(
 
 describe('Tests in component Cart', () => {
   test('Should to be able render cart', () => {
-    render(
-      <CartContext.Provider
-        value={{
-          handleChangeVisibilityCart,
-          isOpen,
-          addOnCart,
-          removeOnCart,
-          cart,
-          totalPrice,
-        }}
-      >
-        <Cart />
-      </CartContext.Provider>
+    renderComponent(
+      isOpen,
+      handleChangeVisibilityCart,
+      addOnCart,
+      removeOnCart,
+      cart,
+      totalPrice
     )
 
     expect(screen.getByTestId('cart')).toBeInTheDocument()
@@ -68,19 +62,13 @@ describe('Tests in component Cart', () => {
   test('should not render the cart if isOpen is false', () => {
     const isOpen = false
 
-    render(
-      <CartContext.Provider
-        value={{
-          handleChangeVisibilityCart,
-          isOpen,
-          addOnCart,
-          removeOnCart,
-          cart,
-          totalPrice,
-        }}
-      >
-        <Cart />
-      </CartContext.Provider>
+    renderComponent(
+      isOpen,
+      handleChangeVisibilityCart,
+      addOnCart,
+      removeOnCart,
+      cart,
+      totalPrice
     )
 
     expect(screen.queryByTestId('cart')).not.toBeInTheDocument()
@@ -122,6 +110,24 @@ describe('Tests in component Cart', () => {
     expect(screen.getByTestId('product-price')).toBeInTheDocument()
     expect(screen.getByAltText(product.name)).toBeInTheDocument()
     expect(screen.getByText(lengthCart)).toBeInTheDocument()
+  })
+
+  test('Should to be call function remove of cart', () => {
+    const cart = [{ ...product }]
+
+    renderComponent(
+      isOpen,
+      handleChangeVisibilityCart,
+      addOnCart,
+      removeOnCart,
+      cart,
+      totalPrice
+    )
+
+    const btnRemove = screen.getByTestId('remove')
+    fireEvent.click(btnRemove)
+
+    expect(removeOnCart).toBeCalledWith(product.id)
   })
 
   test('Should call the close cart function when the button is pressed', async () => {
