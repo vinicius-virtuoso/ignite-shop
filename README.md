@@ -14,6 +14,10 @@ Este projeto foi criado durante o curso Ignite da Rocketseat e consiste em uma l
 - [x] Tela de compra efetuada fiel ao layout do desafio.
 - [x] Teste unitarios
 
+
+#### Vejo o projeto online: https://ignite-shop-eta.vercel.app/
+
+
 ## Tecnologias utilizadas
 
 
