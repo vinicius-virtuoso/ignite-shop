@@ -1,8 +1,10 @@
-<h1 align="center">
+<br/>
+<div align="center">
 
-  <img src="./preview/logo.svg" width="300" alt="Ignite Shop">
+  <img src="./preview/logo.svg" width="220" alt="Ignite Shop">
 
-</h1>
+</div>
+<br/>
 
 ## Descrição do projeto
 
@@ -36,6 +38,7 @@ Este projeto foi criado durante o curso Ignite da Rocketseat e consiste em uma l
 <a href="https://stripe.com/">
   <img src="https://img.shields.io/badge/Stripe-Payments-blue?logo=stripe&style=flat-square" alt="jest tested" width="180" height="30">
 </a>
+
 
 
 
